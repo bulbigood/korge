@@ -119,6 +119,7 @@ fun Project.configureErrorableEsbuild() {
                     addAll(esbuildCmd)
                     //add("--watch",)
                     add("--bundle")
+                    add("--external:ws")
                     if (!debug) {
                         add("--minify")
                         add("--sourcemap=external")
