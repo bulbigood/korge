@@ -457,7 +457,7 @@ object RootKorlibsPlugin {
 
                             // Copy test resources
                             afterEvaluate {
-                                for (targetV in (listOf(iosX64(), iosSimulatorArm64()))) {
+                                for (targetV in (listOf(iosSimulatorArm64()))) {
                                     val target = targetV.name
                                     val taskName = "copyResourcesToExecutable_$target"
                                     val targetTestTask = tasks.findByName("${target}Test") as? org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest? ?: continue

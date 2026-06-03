@@ -16,17 +16,15 @@ import java.io.*
 
 fun Project.configureNativeIos(projectType: ProjectType) {
     configureNativeIosTvos(projectType, "ios")
-    configureNativeIosTvos(projectType, "tvos")
-    ensureSourceSetsConfigure("common", "ios", "tvos")
+    ensureSourceSetsConfigure("common", "ios")
 
     val exKotlinSourceSetContainer = this.project.exKotlinSourceSetContainer
     this.project.kotlin.apply {
         sourceSets.apply {
-            for (target in listOf(iosArm64(), iosX64(), iosSimulatorArm64(), tvosArm64(), tvosX64(), tvosSimulatorArm64())) {
+            for (target in listOf(iosArm64(), iosSimulatorArm64())) {
                 val native = createPairSourceSet(target.name, project = project)
                 when {
                     target.isIos -> native.dependsOn(exKotlinSourceSetContainer.ios)
-                    target.isTvos -> native.dependsOn(exKotlinSourceSetContainer.tvos)
                 }
             }
         }
@@ -54,9 +52,8 @@ fun Project.configureNativeIosTvos(projectType: ProjectType, targetName: String)
     }
 
     val iosTvosTargets = when (targetName) {
-        "ios" -> listOf(kotlin.iosX64(), kotlin.iosArm64(), kotlin.iosSimulatorArm64())
-        "tvos" -> listOf(kotlin.tvosX64(), kotlin.tvosArm64(), kotlin.tvosSimulatorArm64())
-        else -> TODO()
+        "ios" -> listOf(kotlin.iosArm64(), kotlin.iosSimulatorArm64())
+        else -> error("Unexpected target: $targetName")
     }
 
 	kotlin.apply {

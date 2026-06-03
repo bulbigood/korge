@@ -9,12 +9,10 @@ import korlibs.korge.gradle.targets.ios.*
 import korlibs.korge.gradle.targets.js.*
 import korlibs.korge.gradle.targets.jvm.*
 import korlibs.korge.gradle.util.*
-import korlibs.modules.*
 import korlibs.root.*
 import org.gradle.api.*
 import org.gradle.api.artifacts.*
 import org.gradle.api.logging.*
-import org.gradle.internal.impldep.org.yaml.snakeyaml.Yaml
 import org.jetbrains.kotlin.gradle.plugin.mpp.*
 import java.io.*
 import java.net.*
@@ -639,7 +637,7 @@ open class KorgeExtension(
 		}
 	}
 
-	val ALL_NATIVE_TARGETS by lazy { listOf("iosArm64", "iosX64", "iosSimulatorArm64") }
+	val ALL_NATIVE_TARGETS by lazy { listOf("iosArm64", "iosSimulatorArm64") }
 	//val ALL_TARGETS = listOf("android", "js", "jvm", "metadata") + ALL_NATIVE_TARGETS
 	val ALL_TARGETS by lazy { listOf("js", "jvm", "metadata") + ALL_NATIVE_TARGETS }
 

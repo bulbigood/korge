@@ -1,14 +1,14 @@
 package org.korge.kproject
 
 import com.android.build.gradle.*
-import org.korge.kproject.internal.*
-import org.korge.kproject.model.*
-import org.korge.kproject.util.*
 import org.gradle.api.*
 import org.gradle.api.plugins.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.gradle.plugin.*
+import org.korge.kproject.internal.*
+import org.korge.kproject.model.*
+import org.korge.kproject.util.*
 import java.io.*
 
 @Suppress("unused")
@@ -138,12 +138,8 @@ class KProjectPlugin : Plugin<Project> {
             //    linuxArm64()
             //}
             if (hasTarget(KProjectTarget.MOBILE)) {
-                iosX64()
                 iosArm64()
                 iosSimulatorArm64()
-                tvosX64()
-                tvosArm64()
-                tvosSimulatorArm64()
             }
             sourceSets.apply {
                 val common = createPair("common")
