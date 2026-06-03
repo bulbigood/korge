@@ -222,9 +222,11 @@ fun Project.configureNativeIosTvosRun(targetName: String) {
                 dependsOn(prepareKotlinNativeIosTvosProject, linkTaskName)
                 val xcodeProjDir = buildDir["platforms/$targetName/app.xcodeproj"]
                 afterEvaluate {
-                    val linkTask: KotlinNativeLink = tasks.findByName(linkTaskName) as KotlinNativeLink
-                    inputs.dir(linkTask.outputFile)
-                    outputs.file(xcodeProjDir["build/Build/Products/$debugSuffix-$sdkName/${korge.name}.app/${korge.name}"])
+                    val linkTask = tasks.findByName(linkTaskName) as? KotlinNativeLink
+                    if (linkTask != null) {
+                        inputs.dir(linkTask.outputFile)
+                        outputs.file(xcodeProjDir["build/Build/Products/$debugSuffix-$sdkName/${korge.name}.app/${korge.name}"])
+                    }
                 }
                 //afterEvaluate {
                 //}

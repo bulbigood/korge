@@ -306,7 +306,7 @@ open class KorgeExtension(
      */
     fun targetIos() {
         target("ios") {
-            if (supportKotlinNative) {
+            if (supportKotlinNative && isMacos) {
                 project.configureNativeIos(projectType)
             }
         }
